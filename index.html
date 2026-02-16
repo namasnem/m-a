@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lyrophia Apportionment Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="hero">
+      <p class="eyebrow">Lyrophia Civic Tools</p>
+      <h1>Mandatorium & Ascendium Seat Planner</h1>
+      <p class="subtitle">Calculate seat allocations, STV constituency plans, and target population sizes from citizen and seat inputs.</p>
+    </header>
+
+    <section class="panel controls">
+      <h2>Inputs</h2>
+      <div class="mode-select" role="radiogroup" aria-label="Calculation mode">
+        <label class="mode-chip">
+          <input type="radio" name="mode" value="mandatorium" checked />
+          <span>Mandatorium</span>
+        </label>
+        <label class="mode-chip">
+          <input type="radio" name="mode" value="ascendium" />
+          <span>Ascendium</span>
+        </label>
+      </div>
+
+      <form id="calc-form" novalidate>
+        <div class="field-grid">
+          <label class="field">
+            <span>Total citizens (C)</span>
+            <input id="citizens" type="number" min="1" step="1" required placeholder="e.g. 450000000" />
+          </label>
+
+          <label class="field" id="voting-seats-field" hidden>
+            <span>Ascendium voting seats (N)</span>
+            <input id="voting-seats" type="number" min="1" step="1" placeholder="e.g. 200" />
+          </label>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="btn-primary">Calculate</button>
+          <button type="button" id="sample-btn" class="btn-ghost">Load sample values</button>
+        </div>
+        <p id="error" class="error" role="alert" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="panel results" id="results" hidden>
+      <h2>Results</h2>
+      <div id="result-summary" class="summary-grid"></div>
+      <div id="result-details" class="details"></div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
