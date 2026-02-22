@@ -10,6 +10,8 @@ const summaryEl = document.getElementById('result-summary');
 const detailsEl = document.getElementById('result-details');
 
 const preferredMagnitudes = [5, 4, 6];
+const MANDATORIUM_FLOOR_SEATS = 300;
+const MANDATORIUM_BASE_CITIZENS_PER_SEAT = 300000;
 
 const roundHalfUp = (x) => Math.round(x);
 const ceilDiv = (a, b) => Math.floor((a + b - 1) / b);
@@ -86,7 +88,8 @@ const stvTargetsByMagnitude = (citizens, stvSeatsTotal, magnitudes) => {
 };
 
 const calcMandatorium = (citizens) => {
-  const S = ceilDiv(citizens, 300000);
+  const rawSeats = ceilDiv(citizens, MANDATORIUM_BASE_CITIZENS_PER_SEAT);
+  const S = Math.max(MANDATORIUM_FLOOR_SEATS, rawSeats);
   const S_L = roundHalfUp(0.3 * S);
   const S_D = S - S_L;
 
@@ -94,6 +97,8 @@ const calcMandatorium = (citizens) => {
 
   return {
     citizens,
+    rawMandators: rawSeats,
+    minimumMandatorsApplied: rawSeats < MANDATORIUM_FLOOR_SEATS,
     totalMandators: S,
     citizensPerMandatorOverall: citizens / S,
     prSeats: S_L,
@@ -215,8 +220,13 @@ const renderMandatorium = (result) => {
 
   detailsEl.innerHTML = `
     <div class="callout">
+      <strong>Seat floor policy:</strong> Minimum ${format(MANDATORIUM_FLOOR_SEATS)} total Mandatorium seats are always kept. This floor is active below ${format(MANDATORIUM_FLOOR_SEATS * MANDATORIUM_BASE_CITIZENS_PER_SEAT)} citizens, so citizens-per-mandator decreases in smaller populations.<br>
+      <strong>Base-rule seats before floor:</strong> ${format(result.rawMandators)}${result.minimumMandatorsApplied ? ' (floor applied)' : ''}<br>
       <strong>STV plan:</strong> ${result.stvPlanNote}<br>
       <strong>Magnitudes:</strong> ${result.stvMagnitudes.join(', ') || 'None'}
+    </div>
+    <div class="callout">
+      <strong>What this STV constituency plan means:</strong> In this planner, each constituency elects multiple representatives using Single Transferable Vote (STV). The <em>magnitude</em> is how many seats that constituency elects (for example, 5-seat constituencies). A mixed plan means most constituencies use the preferred size, with a few adjusted to make the national seat total fit exactly.
     </div>
     ${targetTable(result.stvTargets)}
   `;
@@ -236,6 +246,9 @@ const renderAscendium = (result) => {
     <div class="callout">
       <strong>Popular STV plan:</strong> ${result.popularStvPlanNote}<br>
       <strong>Magnitudes:</strong> ${result.popularStvMagnitudes.join(', ') || 'None'}
+    </div>
+    <div class="callout">
+      <strong>What this popular STV/constituency plan means:</strong> Popular seats are grouped into multi-member constituencies that use STV, where voters rank candidates and seats are filled proportionally through vote transfers. The listed magnitudes show constituency seat sizes, and mixed magnitudes are used to match the exact number of popular seats.
     </div>
     ${targetTable(result.popularStvTargets)}
   `;

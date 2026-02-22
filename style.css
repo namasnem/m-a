@@ -1,15 +1,15 @@
 :root {
-  --bg: #eef4ff;
+  --bg: #fff1e8;
   --panel: #ffffff;
-  --text: #11213b;
-  --muted: #4d617f;
-  --blue-700: #1f4fb5;
-  --blue-600: #2d63d7;
-  --blue-100: #dce8ff;
-  --red-500: #dc2e45;
-  --red-100: #ffe2e7;
-  --border: #c9d8f8;
-  --shadow: 0 14px 34px rgba(19, 64, 163, 0.14);
+  --text: #3a1a10;
+  --muted: #7c4b35;
+  --blue-700: #b33a18;
+  --blue-600: #d95b2a;
+  --blue-100: #ffe1d2;
+  --red-500: #c73814;
+  --red-100: #ffe9df;
+  --border: #f2c7ae;
+  --shadow: 0 14px 34px rgba(179, 58, 24, 0.2);
 }
 
 * {
@@ -19,7 +19,7 @@
 body {
   margin: 0;
   font-family: "Inter", "Segoe UI", Roboto, sans-serif;
-  background: linear-gradient(170deg, #f7faff 0%, var(--bg) 45%, #d6e5ff 100%);
+  background: linear-gradient(170deg, #fff8f3 0%, var(--bg) 45%, #ffd7bf 100%);
   color: var(--text);
   min-height: 100vh;
 }
@@ -31,7 +31,7 @@ body {
 }
 
 .hero {
-  background: radial-gradient(circle at top right, #5b82e6 2%, var(--blue-700) 48%, #173b86 100%);
+  background: radial-gradient(circle at top right, #ffb97e 2%, var(--blue-700) 48%, #7e2410 100%);
   color: #fff;
   border-radius: 18px;
   padding: 1.5rem;
@@ -55,14 +55,14 @@ body {
 .subtitle {
   margin: 0;
   line-height: 1.45;
-  color: #dde7ff;
+  color: #ffe9db;
 }
 
 .panel {
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: 18px;
-  box-shadow: 0 10px 22px rgba(16, 54, 137, 0.08);
+  box-shadow: 0 10px 22px rgba(160, 63, 24, 0.12);
   padding: 1.15rem;
   margin-bottom: 1rem;
 }
@@ -83,7 +83,7 @@ body {
   align-items: center;
   border: 1px solid var(--border);
   border-radius: 999px;
-  background: #f8fbff;
+  background: #fff8f4;
   cursor: pointer;
   overflow: hidden;
 }
@@ -129,11 +129,11 @@ input[type="number"] {
   padding: 0.6rem 0.72rem;
   font-size: 1rem;
   color: var(--text);
-  background: #fbfdff;
+  background: #fffdfa;
 }
 
 input[type="number"]:focus-visible {
-  outline: 2px solid #7ca0ef;
+  outline: 2px solid #f29d74;
   outline-offset: 1px;
 }
 
@@ -186,7 +186,7 @@ button {
 
 .metric {
   border: 1px solid var(--border);
-  background: linear-gradient(180deg, #ffffff 0%, #f3f7ff 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #fff4ed 100%);
   border-radius: 12px;
   padding: 0.75rem;
 }
@@ -211,7 +211,7 @@ button {
 
 .callout {
   border-left: 4px solid var(--red-500);
-  background: #fff8f9;
+  background: #fff6f1;
   border-radius: 10px;
   padding: 0.72rem 0.85rem;
 }
@@ -230,7 +230,7 @@ table {
 
 th,
 td {
-  border-bottom: 1px solid #e4ecff;
+  border-bottom: 1px solid #f5d7c8;
   padding: 0.54rem 0.6rem;
   text-align: left;
 }
